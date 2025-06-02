@@ -93,11 +93,11 @@ export default function ReactLifecycleWebsite() {
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    useEffect with empty deps runs
+                    Browser paints the UI
                   </li>
                   <li className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    Browser paints the UI
+                    useEffect with empty deps runs
                   </li>
                 </ul>
               </CardContent>
@@ -177,6 +177,194 @@ export default function ReactLifecycleWebsite() {
           </div>
         </div>
       </section>
+      {/* Virtual DOM Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Understanding the Virtual DOM
+          </h2>
+
+          <div className="text-center mb-12">
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              The Virtual DOM is React's secret weapon for efficient updates.
+              It's a JavaScript representation of the real DOM that enables
+              React to optimize rendering and provide better performance.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <Card className="border-2 border-blue-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-blue-700">
+                  <Code className="w-6 h-6" />
+                  What is Virtual DOM?
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-600">
+                  A lightweight JavaScript representation of the real DOM kept
+                  in memory and synced with the "real" DOM.
+                </p>
+                <div className="space-y-3">
+                  <h4 className="font-semibold">Enhancements:</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>
+                        It’s a plain JavaScript object that mirrors the
+                        structure of the UI.
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>
+                        React uses it to figure out the most efficient way to
+                        update the browser
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>
+                        Unlike the real DOM, the Virtual DOM is fast to create,
+                        read, and modify.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="space-y-3">
+                  <h4 className="font-semibold">Key Characteristics:</h4>
+                  <ul className="space-y-2 text-sm">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>JavaScript objects representing DOM elements</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>Faster to manipulate than real DOM</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>
+                        Enables batching of updates (multiple changes in one go)
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>
+                        Platform agnostic: works in React Native, web, and other
+                        platforms
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
+                      <span>
+                        Keeps performance high even with frequent or complex
+                        updates
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-blue-50 p-4 rounded-lg">
+                  <h5 className="font-semibold mb-2">Virtual DOM Structure:</h5>
+                  <pre className="text-xs bg-gray-900 text-gray-100 p-2 rounded">{`// Virtual DOM representation
+{
+  type: 'div',
+  props: {
+    className: 'container',
+    children: [
+      {
+        type: 'h1',
+        props: {
+          children: 'Hello World'
+        }
+      }
+    ]
+  }
+}`}</pre>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 border-green-200">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-green-700">
+                  <RefreshCw className="w-6 h-6" />
+                  How Virtual DOM Works
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-gray-600">
+                  React uses a process called "reconciliation" to efficiently
+                  update the real DOM.
+                </p>
+
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
+                      1
+                    </span>
+                    <div>
+                      <p className="font-medium">Create Virtual DOM</p>
+                      <p className="text-sm text-gray-600">
+                        React creates a virtual representation
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
+                      2
+                    </span>
+                    <div>
+                      <p className="font-medium">State Changes</p>
+                      <p className="text-sm text-gray-600">
+                        Component state or props update
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
+                      3
+                    </span>
+                    <div>
+                      <p className="font-medium">Create New Virtual DOM</p>
+                      <p className="text-sm text-gray-600">
+                        React re-renders the component and builds a new Virtual
+                        DOM tree.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
+                      4
+                    </span>
+                    <div>
+                      <p className="font-medium">Diffing Algorithm</p>
+                      <p className="text-sm text-gray-600">
+                        React compares the new Virtual DOM with the previous one
+                        and calculates the minimal changes (also called
+                        “reconciliation”).
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
+                      5
+                    </span>
+                    <div>
+                      <p className="font-medium">Update Real DOM</p>
+                      <p className="text-sm text-gray-600">
+                        React patches only what changed into the real DOM—this
+                        makes updates fast and efficient.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
       {/* Class Components Lifecycle Section */}
       <section className="mb-12   p-6">
         <h2 className="text-2xl font-bold text-gray-900 ">
@@ -196,23 +384,38 @@ export default function ReactLifecycleWebsite() {
             <div className="bg-white p-4 rounded-lg border">
               <h4 className="font-semibold text-green-700 mb-2">Mounting</h4>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• constructor()</li>
-                <li>• componentDidMount()</li>
+                <li>
+                  constructor() → used for initializing state and binding
+                  methods.
+                </li>
+                <li>
+                  componentDidMount() → used for fetching data or setting up
+                  subscriptions (runs once after initial render).
+                </li>
               </ul>
             </div>
 
             <div className="bg-white p-4 rounded-lg border">
               <h4 className="font-semibold text-blue-700 mb-2">Updating</h4>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• componentDidUpdate()</li>
-                <li>• getSnapshotBeforeUpdate()</li>
+                <li>
+                  componentDidUpdate(prevProps, prevState) → runs after any
+                  update.
+                </li>
+                <li>
+                  getSnapshotBeforeUpdate(prevProps, prevState) → rarely used,
+                  but helpful for reading scroll position before DOM changes.
+                </li>
               </ul>
             </div>
 
             <div className="bg-white p-4 rounded-lg border">
               <h4 className="font-semibold text-red-700 mb-2">Unmounting</h4>
               <ul className="text-sm text-gray-600 space-y-1">
-                <li>• componentWillUnmount()</li>
+                <li>
+                  componentWillUnmount() → cleanup function: remove timers,
+                  listeners, cancel network requests, etc.
+                </li>
               </ul>
             </div>
           </div>
@@ -223,9 +426,13 @@ export default function ReactLifecycleWebsite() {
               React 16.8, functional components can now handle all lifecycle
               behavior using hooks like
               <code className="bg-yellow-100 px-1 rounded mx-1">useEffect</code>
-              ,<code className="bg-yellow-100 px-1 rounded mx-1">useState</code>
-              , and others. This guide focuses on the modern hooks-based
-              approach.
+              ,{" "}
+              <code className="bg-yellow-100 px-1 rounded mx-1">useState</code>,
+              and others. This guide focuses on the modern hooks-based approach.
+              Hooks allow for cleaner, more reusable logic without the
+              complexity of classes and the <code>this</code> keyword. They also
+              enable easier sharing of logic via custom hooks, improving code
+              organization and maintainability.
             </p>
           </div>
         </div>
@@ -705,6 +912,32 @@ function App() {
           </Tabs>
         </div>
       </section>
+      <div className="bg-white p-4 rounded-lg border">
+        <h4 className="font-semibold text-purple-700 mb-2">
+          Hooks: <code>useEffect</code> vs <code>useLayoutEffect</code>
+        </h4>
+        <ul className="text-sm text-gray-600 space-y-1">
+          <li>
+            <code>useEffect()</code> → runs after the component renders and
+            paints to the screen. Used for side effects like data fetching,
+            subscriptions, or updating the DOM. It does **not** block browser
+            painting.
+          </li>
+          <li>
+            <code>useLayoutEffect()</code> → runs synchronously **after** React
+            has performed all DOM mutations but **before** the browser paints.
+            Useful for measuring layout or synchronously re-rendering before the
+            user sees the changes.
+          </li>
+          <li>
+            <strong>Key difference:</strong> <code>useLayoutEffect</code> blocks
+            the painting until it finishes, while <code>useEffect</code> does
+            not. So use <code>useLayoutEffect</code> if you need to make DOM
+            measurements or mutations that must happen before the browser
+            updates the screen.
+          </li>
+        </ul>
+      </div>
       <div className="py-20 px-8 bg-white">
         <h3 className="text-xl font-semibold mb-4">
           🧭 Lifecycle Hook Equivalents
@@ -784,154 +1017,6 @@ function App() {
         </div>
       </div>
 
-      {/* Virtual DOM Section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">
-            Understanding the Virtual DOM
-          </h2>
-
-          <div className="text-center mb-12">
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              The Virtual DOM is React's secret weapon for efficient updates.
-              It's a JavaScript representation of the real DOM that enables
-              React to optimize rendering and provide better performance.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="border-2 border-blue-200">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-blue-700">
-                  <Code className="w-6 h-6" />
-                  What is Virtual DOM?
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600">
-                  A lightweight JavaScript representation of the real DOM kept
-                  in memory and synced with the "real" DOM.
-                </p>
-
-                <div className="space-y-3">
-                  <h4 className="font-semibold">Key Characteristics:</h4>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      <span>JavaScript objects representing DOM elements</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      <span>Faster to manipulate than real DOM</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      <span>Enables batching of updates</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      <span>Platform agnostic</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <h5 className="font-semibold mb-2">Virtual DOM Structure:</h5>
-                  <pre className="text-xs bg-gray-900 text-gray-100 p-2 rounded">{`// Virtual DOM representation
-{
-  type: 'div',
-  props: {
-    className: 'container',
-    children: [
-      {
-        type: 'h1',
-        props: {
-          children: 'Hello World'
-        }
-      }
-    ]
-  }
-}`}</pre>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 border-green-200">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-green-700">
-                  <RefreshCw className="w-6 h-6" />
-                  How Virtual DOM Works
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-600">
-                  React uses a process called "reconciliation" to efficiently
-                  update the real DOM.
-                </p>
-
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
-                      1
-                    </span>
-                    <div>
-                      <p className="font-medium">Create Virtual DOM</p>
-                      <p className="text-sm text-gray-600">
-                        React creates a virtual representation
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
-                      2
-                    </span>
-                    <div>
-                      <p className="font-medium">State Changes</p>
-                      <p className="text-sm text-gray-600">
-                        Component state or props update
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
-                      3
-                    </span>
-                    <div>
-                      <p className="font-medium">Create New Virtual DOM</p>
-                      <p className="text-sm text-gray-600">
-                        React creates new virtual tree
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
-                      4
-                    </span>
-                    <div>
-                      <p className="font-medium">Diffing Algorithm</p>
-                      <p className="text-sm text-gray-600">
-                        Compare old vs new virtual DOM
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-green-100 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold">
-                      5
-                    </span>
-                    <div>
-                      <p className="font-medium">Update Real DOM</p>
-                      <p className="text-sm text-gray-600">
-                        Apply only necessary changes
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* Client vs Server Side */}
       <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
@@ -966,10 +1051,6 @@ function App() {
                     <li className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
                       <span>Interactive immediately after mount</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      <span>Can access browser APIs (window, document)</span>
                     </li>
                   </ul>
                 </div>
@@ -1013,14 +1094,6 @@ function App() {
                     <li className="flex items-start gap-2">
                       <AlertCircle className="w-4 h-4 text-yellow-500 mt-0.5" />
                       <span>useEffect doesn't run on server</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-0.5" />
-                      <span>Hydration completes lifecycle on client</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <AlertCircle className="w-4 h-4 text-yellow-500 mt-0.5" />
-                      <span>No access to browser APIs on server</span>
                     </li>
                   </ul>
                 </div>
